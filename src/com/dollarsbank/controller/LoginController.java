@@ -137,6 +137,19 @@ public class LoginController {
 	}
 	
 	
+	public static int current_user_id() throws SQLException {
+		String phone = LoginController.phone;
+		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM customer WHERE phone = ? ");	
+		pstmt.setString(1, phone);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		
+		int customerid = rs.getInt("id");
+		return customerid;
+		
+	}
+	
+	
 	
 	
 
