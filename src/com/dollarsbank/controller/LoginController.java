@@ -27,20 +27,20 @@ public class LoginController {
 			
 			
 			System.out.println("\nFull Name: ");
-			name = sc.next();
+			name = sc.nextLine();
 			pstmt.setString(1, name);
 			
 			
 			System.out.println("\nAddress: ");
-			address = sc.next();
+			address = sc.nextLine();
 			pstmt.setString(2, address);
 			
 			System.out.println("\nPhone Number: ");
-			phone = sc.next();
+			phone = sc.nextLine();
 			pstmt.setString(3, phone);
 			
 			System.out.println("Password: ");
-			password = sc.next();
+			password = sc.nextLine();
 			pstmt.setString(4, password);
 			
 			

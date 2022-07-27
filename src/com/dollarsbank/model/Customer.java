@@ -1,4 +1,7 @@
 package com.dollarsbank.model;
+import java.util.List;
+
+
 
 public class Customer {
 	
@@ -8,11 +11,16 @@ public class Customer {
 	private String phone;
 	private String password;
 	private float balance;
+	private List<Transaction> transaction;
+	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(int id, String name, String address, String phone, String password, float balance) {
+
+	
+	public Customer(int id, String name, String address, String phone, String password, float balance,
+			List<Transaction> transaction) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -20,7 +28,10 @@ public class Customer {
 		this.phone = phone;
 		this.password = password;
 		this.balance = balance;
+		this.transaction = transaction;
 	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -56,6 +67,16 @@ public class Customer {
 	}
 	public void setBalance(float balance) {
 		this.balance = balance;
+	}
+
+
+	public List<Transaction> getTransaction() {
+		return transaction;
+	}
+
+
+	public void setTransaction(List<Transaction> transaction) {
+		this.transaction = transaction;
 	}
 	
 	
