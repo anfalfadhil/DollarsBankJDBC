@@ -29,6 +29,12 @@ public class ActionsController {
 		
 		float new_balance = db_balance + deposit;
 		
+		
+		PreparedStatement pstmt2 = conn.prepareStatement("UPDATE customer SET balance= ? where phone = ? ");
+		pstmt2.setFloat(1, new_balance);
+		pstmt2.setString(2, user_phone);
+		int i = pstmt2.executeUpdate();
+
 		System.out.println("Your deposit was successful, your current balance is: " + new_balance);
 		
 	}
