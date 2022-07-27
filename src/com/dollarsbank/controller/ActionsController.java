@@ -113,6 +113,27 @@ public class ActionsController {
 	
 	
 	
+	public static void display_info() throws SQLException {
+		String user_phone = LoginController.phone;
+		PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM customer WHERE phone = ? ");
+		pstmt1.setString(1, user_phone);
+		ResultSet rs1 = pstmt1.executeQuery();
+		rs1.next();
+		String name = rs1.getString("name");
+		String phone = rs1.getString("phone");
+		String address = rs1.getString("address");
+		String password = rs1.getString("password");
+		float balance = rs1.getFloat("balance");
+		
+		System.out.println("Name: " + name + "\n"
+				+ "Phone: " + phone + "\n"
+						+ "Address: " + address + "\n"
+								+ "Password: " + password + "\n"
+										+ "Balance: " + balance );
+	}
+	
+	
+	
 	
 	
 

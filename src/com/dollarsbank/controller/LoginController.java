@@ -109,6 +109,8 @@ public class LoginController {
 				break;
 			case 2: 
 				ActionsController.withdraw();
+			case 4: 
+				ActionsController.display_info();
 				break;
 			case 5: 
 				ActionsController.transfer();
