@@ -96,10 +96,9 @@ public class LoginController {
 			System.out.println("Welcome! What can I do for you? ");
 			System.out.println("1. Deposite Amount\n"
 					+ "2. Withdraw Amount\n"
-					+ "3. View 5 Recent Transactions\n"
-					+ "4. Display Customer Information\n"
-					+ "5. Funds Transfer\n"
-					+ "6. Sign Out");
+					+ "3. Display Customer Information\n"
+					+ "4. Funds Transfer\n"
+					+ "5. Sign Out");
 			
 			choise = Integer. parseInt(sc.next());
 			
@@ -109,13 +108,14 @@ public class LoginController {
 				break;
 			case 2: 
 				ActionsController.withdraw();
-			case 4: 
+			case 3: 
 				ActionsController.display_info();
 				break;
-			case 5: 
+			case 4: 
 				ActionsController.transfer();
 				break;
-			case 6: 
+			case 5: 
+				logout();
 				break;
 			}
 		
@@ -130,6 +130,11 @@ public class LoginController {
 	
 	
 	
+	
+	public static void logout() {
+		System.out.println("Thank you for your Business, see you soon!");
+		LoginController.phone= "N/A";
+	}
 	
 	
 	
