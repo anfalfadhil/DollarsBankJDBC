@@ -105,7 +105,15 @@ public class LoginController {
 			switch (choise) {
 			case 1: 
 				ActionsController.deposit();
+				break;
+			case 2: 
+				ActionsController.withdraw();
+				break;
+			case 5: 
+				break;
 			}
+		
+		
 			
 			
 		}

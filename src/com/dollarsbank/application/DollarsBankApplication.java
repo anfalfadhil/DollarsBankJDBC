@@ -32,6 +32,7 @@ public class DollarsBankApplication {
 		if (customer_choice == 1) {
 			
 			login.signUp();
+			login.login();
 		} else if ( customer_choice == 2) {
 			login.login();
 		}
