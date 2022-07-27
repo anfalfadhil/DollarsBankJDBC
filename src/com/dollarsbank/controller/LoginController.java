@@ -98,7 +98,8 @@ public class LoginController {
 					+ "2. Withdraw Amount\n"
 					+ "3. View 5 Recent Transactions\n"
 					+ "4. Display Customer Information\n"
-					+ "5. Sign Out");
+					+ "5. Funds Transfer\n"
+					+ "6. Sign Out");
 			
 			choise = Integer. parseInt(sc.next());
 			
@@ -110,6 +111,9 @@ public class LoginController {
 				ActionsController.withdraw();
 				break;
 			case 5: 
+				ActionsController.transfer();
+				break;
+			case 6: 
 				break;
 			}
 		

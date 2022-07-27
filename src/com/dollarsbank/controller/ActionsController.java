@@ -71,6 +71,47 @@ public class ActionsController {
 	
 	
 	
+	public static void transfer() throws SQLException {
+		String user_phone = LoginController.phone;
+		PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM customer WHERE phone = ? ");
+		pstmt1.setString(1, user_phone);
+		ResultSet rs1 = pstmt1.executeQuery();
+		rs1.next();
+		float my_balance = rs1.getFloat("balance");
+		
+		System.out.println("Enter the phone number for the person you want to transfer funds to : ");
+	    String phone2 = sc.next();
+		PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM customer WHERE phone = ? ");
+		pstmt2.setString(1, phone2);
+		ResultSet rs2 = pstmt2.executeQuery();
+		rs2.next();
+		float their_balance = rs2.getFloat("balance");
+		
+		
+	    System.out.println("Enter the amount you want to transfer: ");
+	    float trans = Float.parseFloat(sc.next());
+	    
+	    float my_new_balance = my_balance - trans;
+	    float their_new_balance = their_balance + trans;
+	    
+	    
+	    
+	    PreparedStatement pstmt3 = conn.prepareStatement("UPDATE customer SET balance= ? where phone = ? ");
+		pstmt3.setFloat(1, my_new_balance);
+		pstmt3.setString(2, user_phone);
+		int i = pstmt3.executeUpdate();
+		
+	    PreparedStatement pstmt4 = conn.prepareStatement("UPDATE customer SET balance= ? where phone = ? ");
+		pstmt4.setFloat(1, their_new_balance);
+		pstmt4.setString(2, phone2);
+		int i2 = pstmt4.executeUpdate();
+	    
+		System.out.println("Your transaction was successful, your current balance is: " + my_new_balance + "\n"
+				+ "their new balance is: " + their_new_balance);
+	    
+	}
+	
+	
 	
 	
 	
