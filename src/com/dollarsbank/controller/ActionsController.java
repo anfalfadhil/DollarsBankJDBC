@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import com.dollarsbank.connection.ConnectionManager;
+
 
 public class ActionsController {
 
@@ -110,8 +112,11 @@ public class ActionsController {
 			int i = pstmt2.executeUpdate();
 
 			System.out.println("Your transaction was successful, your current balance is: " + new_balance);
-
+			create_deposit(withdraw, new_balance, db_balance);
 		}
+		
+		
+		
 
 	}
 
@@ -149,6 +154,8 @@ public class ActionsController {
 
 		System.out.println("Your transaction was successful, your current balance is: " + my_new_balance + "\n"
 				+ "their new balance is: " + their_new_balance);
+		
+		create_deposit(trans, my_new_balance, my_balance);
 
 	}
 
@@ -167,5 +174,25 @@ public class ActionsController {
 		System.out.println("Name: " + name + "\n" + "Phone: " + phone + "\n" + "Address: " + address + "\n"
 				+ "Password: " + password + "\n" + "Balance: " + balance);
 	}
+	
+	
+	public static void display5transactions () throws SQLException {
+		int customerid = LoginController.current_user_id();
+		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions_list WHERE customerid = ? ");
+		pstmt.setInt(1, customerid);
+		ResultSet rs = pstmt.executeQuery();
+		
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columnsNumber = rsmd.getColumnCount();
+		while (rs.next()) {
+		    for (int i = 1; i <= columnsNumber; i++) {
+		        if (i > 1) System.out.print(",  ");
+		        String columnValue = rs.getString(i);
+		        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+		    }
+		    System.out.println("");
+		}
+	}
+	
 
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.dollarsbank.connection.ConnectionManager;
+import com.dollarsbank.exception.GlobalExceptionHandler;
 import com.dollarsbank.model.Customer;
 
 public class LoginController {
@@ -77,6 +78,10 @@ public class LoginController {
 	
 	public static void login() throws SQLException {
 		
+		try {
+			
+		
+		
 	    System.out.println("Please Enter your Phone Number : ");
 	     phone = sc.next();
 	    
@@ -98,7 +103,8 @@ public class LoginController {
 					+ "2. Withdraw Amount\n"
 					+ "3. Display Customer Information\n"
 					+ "4. Funds Transfer\n"
-					+ "5. Sign Out");
+					+ "5. Show last five transactions\n"
+					+ "6. Sign Out");
 			
 			choise = Integer. parseInt(sc.next());
 			
@@ -108,6 +114,7 @@ public class LoginController {
 				break;
 			case 2: 
 				ActionsController.withdraw();
+				break;
 			case 3: 
 				ActionsController.display_info();
 				break;
@@ -115,8 +122,13 @@ public class LoginController {
 				ActionsController.transfer();
 				break;
 			case 5: 
+				ActionsController.display5transactions();
+				break;
+			case 6: 
 				logout();
 				break;
+			default:
+				throw new GlobalExceptionHandler("you must choose on of the listed numbers, invalid input");
 			}
 		
 		
@@ -124,7 +136,9 @@ public class LoginController {
 			
 		}
 		
-	    
+		} catch ( GlobalExceptionHandler gex) {
+			System.out.println(gex.getMessage());
+		}
 	    
 	}
 	
